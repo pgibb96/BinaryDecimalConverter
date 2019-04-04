@@ -1,31 +1,35 @@
-#input, converted to string, and reversed
-numl = str(input("> "))[::-1]
+print("Type the binary you would like converted to decimal...")
+#Original input
+num = (input("> "))
+#Converting number to a list of characters, then reversed it.
+numl = str(num)[::-1]
 #final decimal result
 final = 0
 #current power
 power = 0
 #list of digits
-
 numlist = []
-#number -> list
-#takes in a binary, and converts it to a list. Then, it flips the order.
-def binlist(bin):
+
+#list -> list
+#takes in list of strings, and appends the corresponding integers to numlist.
+#Then, it reverses the order.
+def str2int(bin):
     global numlist
     global numl
-    for digit in numl:
-        numlist.append(int(digit))
+    for i in numl:
+        numlist.append(int(i))
 
 #list -> number
-#takes in a number in binary, and produces the corresponding decimal
+#takes a list with the binary, and produces the corresponding decimal
 def convert(number):
     global final
     global power
     if len(numlist) > 1:
         final = final + (int(numlist[0])*(2**power))
-        power = power + 1
+        power += 1
         convert(numlist.pop(0))
     elif len(numlist) == 1:
         final = final + (int(numlist[0])*(2**power))
         print(final)
 
-convert(binlist(numl))
+convert(str2int(numl))
